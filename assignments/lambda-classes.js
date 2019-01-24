@@ -31,6 +31,16 @@ class Instructor extends Person {
     grade(student, subject) {
         console.log(`${student.name} receives a perfect score on ${subject}`);
     }
+    changeGrade(student) {
+        let addOrSubGradePoints = Math.round(Math.random() * 10);
+        if(student.grade >= 70) {
+            student.grade -= addOrSubGradePoints;
+            return console.log(`${this.name} has subtracted ${addOrSubGradePoints} points to ${student.name}'s grade. Their grade is now ${student.grade}.`);
+        } else {
+            student.grade += addOrSubGradePoints;
+            return console.log(`${this.name} has added ${addOrSubGradePoints} to ${student.name}'s grade. Their grade is now ${student.grade}.`);
+        }
+    }
 }
 
 
@@ -41,6 +51,8 @@ class Student extends Person {
         this.previousBackground = studentProps.previousBackground;
         this.className = studentProps.className;
         this.favSubjects = studentProps.favSubjects;
+        this.grade = studentProps.grade;
+        //stretch assignment^^^^
     }
     //Student Methods
     listsSubjects() {
@@ -53,6 +65,14 @@ class Student extends Person {
     }
     sprintChallenge(subject) {
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
+    }
+    graduate(instructorOrPM) {
+        if (this.grade >= 70) {
+            return console.log(`${this.name} has passed all assignments and graduated from Lambda School!!!`)
+        } else {
+            instructorOrPM.changeGrade(this.Object);
+            return this.graduate;
+        }
     }
 }
 /*--------------------------children of Person END-----------------------------------------*/
@@ -111,7 +131,8 @@ const james = new Student({
     gender: 'male',
     previousBackground: 'Finance',
     className: 'Web17',
-    favSubjects: ['HTML', 'CSS', 'JavaScript']
+    favSubjects: ['HTML', 'CSS', 'JavaScript'],
+    grade: 99,
 });
 
 const bobby = new Student({
@@ -121,7 +142,8 @@ const bobby = new Student({
     gender: 'male',
     previousBackground: 'Middle Linebacker for the South Central Louisiana Mud Dogs',
     className: 'Web15',
-    favSubjects: ['Water', 'H20', 'Agua', 'Not Gatorade']
+    favSubjects: ['Water', 'H20', 'Agua', 'Not Gatorade'],
+    grade: 60,
 });
 
 //Objects--- ProjectManagers
@@ -179,3 +201,6 @@ console.log(kate.favInstructor);//'HTML Henry'
 //projectmanagers-methods
 nathan.standUp('#Web17-Nathan');// 'PM Nathan announces to #Web17-Nathan, @channel standy times!'
 kate.debugsCode(james, 'Node.js');// 'PM Kate debugs James's code on Node.js'
+
+james.graduate(nathan);
+bobby.graduate(kate);
