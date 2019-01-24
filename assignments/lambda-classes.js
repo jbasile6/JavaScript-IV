@@ -44,15 +44,15 @@ class Student extends Person {
     }
     //Student Methods
     listsSubjects() {
-        this.favSubjects.forEach(function (favSub){
-            console.log(favSub);
+        this.favSubjects.map(function (favSub){
+            return console.log(favSub);
         });
     }
     PRAssignment(subject) {
-        console.log(`${student.name} has submitted a PR for ${subject}`);
+        console.log(`${this.name} has submitted a PR for ${subject}`);
     }
     sprintChallenge(subject) {
-        console.log(`${student.name} has begun sprint challenge on ${subject}`);
+        console.log(`${this.name} has begun sprint challenge on ${subject}`);
     }
 }
 /*--------------------------children of Person END-----------------------------------------*/
@@ -76,5 +76,106 @@ class ProjectManagers extends Instructor {
     }
 }
 
-
 /*--------------------------children of Instructors END-----------------------------------------*/
+
+
+//Objects--- Instructors
+
+const htmlHenry = new Instructor({
+    name: 'HTML Henry',
+    location: 'Houston',
+    age: 40,
+    gender: 'male',
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: "I don't even like HTML. I don't know why I was named HTML Henry."
+});
+
+const cssSusan = new Instructor({
+    name: 'CSS Susan',
+    location: 'Seatle',
+    age: 36,
+    gender: 'female',
+    favLanguage: 'CSS',
+    specialty: 'LESS CSS',
+    catchPhrase: "Make sure your cascade is in the correct order!"
+})
+
+
+//Objects--- Students
+
+const james = new Student({
+    name: 'James',
+    location: 'Philadelphia',
+    age: 23,
+    gender: 'male',
+    previousBackground: 'Finance',
+    className: 'Web17',
+    favSubjects: ['HTML', 'CSS', 'JavaScript']
+});
+
+const bobby = new Student({
+    name: 'Bobby Boucher',
+    location: 'Louisiana',
+    age: 31,
+    gender: 'male',
+    previousBackground: 'Middle Linebacker for the South Central Louisiana Mud Dogs',
+    className: 'Web15',
+    favSubjects: ['Water', 'H20', 'Agua', 'Not Gatorade']
+});
+
+//Objects--- ProjectManagers
+
+const nathan = new ProjectManagers({
+    name: 'PM Nathan',
+    location: 'Baltimore',
+    age: 29,
+    gender: 'male',
+    gradClassName: 'FSW1',
+    favInstructor: 'CSS Susan'
+});
+
+const kate = new ProjectManagers({
+    name: 'PM Kate',
+    location: 'San Fransisco',
+    age: 34,
+    gender: 'female',
+    gradClassName: 'FSW4',
+    favInstructor: 'HTML Henry'
+});
+
+//instructors-props
+console.log(cssSusan.name); //'CSS Susan'
+console.log(htmlHenry.location); //'Houston'
+console.log(cssSusan.age); //36
+console.log(htmlHenry.gender); //'male'
+console.log(cssSusan.favLanguage); // 'CSS'
+console.log(htmlHenry.catchPhrase); //'I don't even like HTML. I don't know why I was named HTML Henry'
+
+//instructors-methods
+cssSusan.demo('JS II'); //'Today we are learning about JS II
+htmlHenry.grade(james, 'Advanced CSS'); //'James receives a perfect score on Advanced CSS'
+
+
+//student-props
+console.log(bobby.previousBackground);//'Middle Linebacker for the South Central Louisiana Mud Dogs'
+console.log(james.className);//'Web17'
+console.log(bobby.favSubjects);//'["Water", "H20", "Agua", "Not Gatorade"]
+
+//student-methods
+james.listsSubjects();
+/*
+HTML
+CSS
+JavaScript
+*/
+bobby.PRAssignment('React');//'Bobby Boucher has submitted a PR for React'
+james.sprintChallenge('JS IV');//'James has begun sprint challenge on JS IV'
+
+//projectmanagers-props
+console.log(nathan.gradClassName);//'FSW1'
+console.log(kate.favInstructor);//'HTML Henry'
+
+//projectmanagers-methods
+nathan.standUp('#Web17-Nathan');// 'PM Nathan announces to #Web17-Nathan, @channel standy times!'
+kate.debugsCode(james, 'Node.js');// 'PM Kate debugs James's code on Node.js'
