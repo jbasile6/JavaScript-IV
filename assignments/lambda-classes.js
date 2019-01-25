@@ -33,12 +33,12 @@ class Instructor extends Person {
     }
     changeGrade(student) {
         let addOrSubGradePoints = Math.round(Math.random() * 10);
-        if(student.grade >= 70) {
+        if (student.grade >= 70) {
             student.grade -= addOrSubGradePoints;
             return console.log(`${this.name} has subtracted ${addOrSubGradePoints} points to ${student.name}'s grade. Their grade is now ${student.grade}.`);
         } else {
             student.grade += addOrSubGradePoints;
-            return console.log(`${this.name} has added ${addOrSubGradePoints} to ${student.name}'s grade. Their grade is now ${student.grade}.`);
+            return console.log(`${this.name} has added ${addOrSubGradePoints} points to ${student.name}'s grade. Their grade is now ${student.grade}.`);
         }
     }
 }
@@ -70,8 +70,13 @@ class Student extends Person {
         if (this.grade >= 70) {
             return console.log(`${this.name} has passed all assignments and graduated from Lambda School!!!`)
         } else {
-            instructorOrPM.changeGrade(this.Object);
-            return this.graduate;
+            console.log(`${this.name} must raise their grade in order to graduate.`)
+            instructorOrPM.changeGrade(this);
+            if(this.grade <= 70) {
+                this.graduate(instructorOrPM);
+                this.graduate(instructorOrPM);
+
+            }
         }
     }
 }
@@ -203,4 +208,4 @@ nathan.standUp('#Web17-Nathan');// 'PM Nathan announces to #Web17-Nathan, @chann
 kate.debugsCode(james, 'Node.js');// 'PM Kate debugs James's code on Node.js'
 
 james.graduate(nathan);
-bobby.graduate(kate);
+bobby.graduate(htmlHenry);
